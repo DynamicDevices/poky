@@ -38,6 +38,8 @@ do_install () {
 	cp -pPR etc/* ${D}${sysconfdir}/
 	chown -R root:root ${D}${sysconfdir}/
 	install -m 0755 bin/resolvconf ${D}${base_sbindir}/
+        install -d ${D}${base_libdir}/${PN}
+	install -m 0755 bin/list-records ${D}${base_libdir}/${PN}/
 	install -m 0644 README ${D}${docdir}/${P}/
 	install -m 0644 man/resolvconf.8 ${D}${mandir}/man8/
 }
@@ -51,3 +53,5 @@ pkg_postinst_${PN} () {
 		fi
 	fi
 }
+
+FILES_${PN} += "${base_libdir}/${PN}/list-records"
